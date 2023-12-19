@@ -1,5 +1,63 @@
 <h1>{{title}}</h1>
-
-<router-outlet></router-outlet>
+<div  class="container">
+    <div class ="row">
+  <mat-form-field appearance="outline">
+  <mat-label>Filter Table</mat-label>
+  <input matInput placeholder="" (keyup)="applyFilter($event)"/>
+  </mat-form-field>
+  </div>
+  <div class ="row">
+  <div *ngIf="isLoading" 
+     style="display: flex; justify-content: center; align-items: center; background: white;">
+    <mat-progress-spinner 
+      color="primary" 
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+      <div  class="example-container mat-elevation-z8" >
+          
+          <mat-table *ngIf="!isLoading" #table matSort [dataSource]="datasource">
+      
+            <!-- Position Column -->
+            <ng-container matColumnDef="id" >
+              <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="title">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="by">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Author </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.by}} </mat-cell>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="url">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Read More </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                  <a href="{{element.url}}">{{element.url}}</a>
+                  <!-- {{element.url}} -->
+              </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        
+          <mat-paginator  #paginator
+                         [pageSize]="10"
+                         [pageSizeOptions]="[5, 10, 20]"
+                         [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
+  </div>
+  </div>
+  
+<!-- <router-outlet></router-outlet> -->
 <!-- <app-storyangulartable></app-storyangulartable> -->
 
