@@ -4,7 +4,7 @@ import { StoryangulartableComponent } from './storyangulartable/storyangulartabl
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-const routes: Routes = [{path:"",component:StoryangulartableComponent},
+const routes: Routes = [{path:"",component:DashboardComponent},
 {path:"Dashboard",component:DashboardComponent},
 {path:"HackerStoryList",component:StoryangulartableComponent},
 ];
