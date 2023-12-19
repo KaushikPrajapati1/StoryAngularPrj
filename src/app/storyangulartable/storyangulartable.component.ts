@@ -37,6 +37,9 @@ export class StoryangulartableComponent implements OnInit{
       
       
     }
+    getdata(){
+      
+    }
     ngOnInit(){
       
       this.isLoading = true;
