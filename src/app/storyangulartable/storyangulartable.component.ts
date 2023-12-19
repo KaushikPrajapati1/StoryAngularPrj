@@ -4,7 +4,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-storyangulartable',
@@ -20,7 +20,7 @@ import { MatSort } from '@angular/material/sort';
 export class StoryangulartableComponent implements OnInit{
   pager!: Pager;
   title:String="";
-  isLoading = true;
+  isLoading:boolean = true;
   ELEMENTS: Element[]=[];
   sortProperty: string = 'id';
     sortOrder = 1;
@@ -31,13 +31,15 @@ export class StoryangulartableComponent implements OnInit{
     @ViewChild(MatSort)
   sort: MatSort = new MatSort;
     constructor(private apiService: HackerStoryServiceService ){
-
+    
 
       
       
       
     }
     ngOnInit(){
+      
+      this.isLoading = true;
       this.apiService.getStoryListPageWise(1).subscribe(
         (result:any)=>{
                 setTimeout(() => {
@@ -66,7 +68,6 @@ export class StoryangulartableComponent implements OnInit{
             
               },
             )
-      
     }
     applyFilter(event : Event){
       const filterValue = (event.target as HTMLInputElement).value;

@@ -11,14 +11,18 @@ import { MatSortModule } from '@angular/material/sort';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips'
+import {  MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServerTransferStateModule } from '@angular/platform-server';
+import { DashboardComponent } from './dashboard/dashboard.component';
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
 };
 @NgModule({
   declarations: [
     AppComponent,
-    StoryangulartableComponent
+    StoryangulartableComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,10 @@ const appearance: MatFormFieldDefaultOptions = {
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BrowserModule.withServerTransition({appId: 'app-root'}),
+    ServerTransferStateModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {
